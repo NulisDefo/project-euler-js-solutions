@@ -12,18 +12,20 @@ const generateNum = (digits) => {
 const largestPalindrome = (digits) => {
     let num1 = generateNum(digits);
     let num2 = num1;
-console.log(num1, num2);
-    while(1) {
-        let potentialPalindrome = num1 * num2;
-        console.log(num1, num2);
-        // console.log(potentialPalindrome);
-        if(isPalindrome(potentialPalindrome)) {
-            return potentialPalindrome;
+    let largestPalindrome = 0;
+    // let nums;
+    for (let i = num1; i >= 0; i--) {
+        for (let j = num2; j >= 0; j--) {
+            let potentialPalindrome = i * j;
+            if(isPalindrome(potentialPalindrome) && (largestPalindrome < potentialPalindrome)) {
+                largestPalindrome = potentialPalindrome;
+                // nums = [i, j];
+            }
         }
-        num2--;
     }
 
-    return false;
+    // console.log(nums);
+    return largestPalindrome;
 }
 
 console.log(largestPalindrome(3));
