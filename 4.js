@@ -10,22 +10,22 @@ const generateNum = (digits) => {
 }
 
 const largestPalindrome = (digits) => {
-    let num1 = generateNum(digits);
-    let num2 = num1;
+    let a = generateNum(digits);
+    let b;
     let largestPalindrome = 0;
-    // let nums;
-    for (let i = num1; i >= 0; i--) {
-        for (let j = num2; j >= 0; j--) {
-            let potentialPalindrome = i * j;
-            if(isPalindrome(potentialPalindrome) && (largestPalindrome < potentialPalindrome)) {
-                largestPalindrome = potentialPalindrome;
-                // nums = [i, j];
-            }
+    const minDigit = generateNum(digits - 1) + 1;
+
+    while(a >= minDigit) {
+        b = a;
+        while(b >= minDigit) {
+            if(a * b <= largestPalindrome) break;
+            if(isPalindrome(a * b)) largestPalindrome = a * b;
+            b--;
         }
+        a--;
     }
 
-    // console.log(nums);
     return largestPalindrome;
 }
 
-console.log(largestPalindrome(3));
+console.log(largestPalindrome(4));
